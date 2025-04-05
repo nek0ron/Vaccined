@@ -5,6 +5,8 @@ namespace Vaccined
 
     public partial class Auth : Form
     {
+        string conn = "server=stud-mysql.sdlik.ru;port=33445;user=st_333_19;database=is_333_19_KR;password=92263238";
+        MySqlConnection connection;
         class NullLoginOrPass : Exception
         {
             public NullLoginOrPass(string mess) : base(mess)
@@ -44,8 +46,6 @@ namespace Vaccined
                 }
             }
         }
-        string conn = "server=stud-mysql.sdlik.ru;port=33445;user=st_333_19;database=is_333_19_KR;password=92263238";
-        MySqlConnection? connection;
         public Auth()
         {
             InitializeComponent();
@@ -60,7 +60,7 @@ namespace Vaccined
         {
             string log = textBox1.Text;
             string pass = textBox2.Text;
-            connection?.Open();
+            connection.Open();
 
             try
             {
@@ -92,7 +92,7 @@ namespace Vaccined
             {
                 MessageBox.Show("Ошибка подключения! Логин или пароль введены неверно");
             }
-            connection?.Close();
+            connection.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
