@@ -4,8 +4,7 @@ namespace Vaccined
 {
     public partial class Main : Form
     {
-        string conn = "server=stud-mysql.sdlik.ru;port=33445;user=st_333_19;database=is_333_19_KR;password=92263238";
-        MySqlConnection connection;
+
         public Main()
         {
             InitializeComponent();
@@ -16,10 +15,10 @@ namespace Vaccined
 
         private void Main_Load(object sender, EventArgs e)
         {
-            connection = new MySqlConnection(conn);
-            connection.Open();
+            SQLConnect.connection = new MySqlConnection(SQLConnect.conn);
+            SQLConnect.connection.Open();
             string sql = "SELECT Login, Pswrd FROM Users";
-            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlCommand command = new MySqlCommand(sql, SQLConnect.connection);
             MySqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -28,30 +27,28 @@ namespace Vaccined
                 listBox1.Items.Add($"{login} {pass}");
             }
             reader.Close();
-            connection.Close();
+            SQLConnect.connection.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            connection?.Open();
+            SQLConnect.connection.Open();
 
-            int insertCount = 0;
-
-            string login = textBox1.Text;
-            string pswd = textBox2.Text;
-            string sql = $"INSERT INTO Users (Login, Pswrd) VALUES('{login}', '{pswd}')";
+            string log = textBox1.Text;
+            string pass = textBox2.Text;
+            string sql = $"INSERT INTO Users (Login, Pswrd) VALUES('{log}', '{pass}')";
             try
             {
-                MySqlCommand command = new MySqlCommand(sql, connection);
-                insertCount = Convert.ToInt32(command.ExecuteNonQuery());
+                MySqlCommand command = new MySqlCommand(sql, SQLConnect.connection);
+                int insertCount = Convert.ToInt32(command.ExecuteNonQuery());
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Операция добавления пользователя закончилась с ошибкой!" + " " + ex.Message);
+                MessageBox.Show($"Ошибка добавления пользователя! Что-то пошло не так - {ex.Message}");
             }
             finally
             {
-                connection?.Close();
+                SQLConnect.connection.Close();
             }
         }
     }

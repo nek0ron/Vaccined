@@ -102,7 +102,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Auth";
-            Text = "Авторизация для входа в система для учёта вакцинированных пациентов";
+            Text = "Авторизация для входа в систему для учёта вакцинированных пациентов";
             TopMost = true;
             Load += Form1_Load;
             ResumeLayout(false);

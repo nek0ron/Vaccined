@@ -5,8 +5,6 @@ namespace Vaccined
 
     public partial class Auth : Form
     {
-        string conn = "server=stud-mysql.sdlik.ru;port=33445;user=st_333_19;database=is_333_19_KR;password=92263238";
-        MySqlConnection connection;
         class NullLoginOrPass : Exception
         {
             public NullLoginOrPass(string mess) : base(mess)
@@ -53,18 +51,32 @@ namespace Vaccined
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            connection = new MySqlConnection(conn);
+           SQLConnect.connection = new MySqlConnection(SQLConnect.conn);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string log = textBox1.Text;
-            string pass = textBox2.Text;
-            connection.Open();
-
+            string Login = textBox1.Text;
+            string Pswrd = textBox2.Text;
             try
             {
-                UsersAuth.CheckingExceptions(log, pass);
+                SQLConnect.connection.Open();
+                UsersAuth.CheckingExceptions(Login, Pswrd);
+                string sql = "SELECT COUNT(UserId) FROM Users WHERE Login = @Login AND Pswrd = @Pswrd";
+                MySqlCommand command = new MySqlCommand(sql, SQLConnect.connection);
+                command.Parameters.AddWithValue("@Login", Login);
+                command.Parameters.AddWithValue("@Pswrd", Pswrd);
+                int count = Convert.ToInt32(command.ExecuteScalar().ToString());
+
+                if (count > 0)
+                {
+                    MessageBox.Show("Успешная авторизация!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка подключения! Логин или пароль введены неверно");
+                }
             }
             catch (NullLoginOrPass ex)
             {
@@ -78,21 +90,10 @@ namespace Vaccined
             {
                 MessageBox.Show(ex.Message);
             }
-
-            string sql = $"SELECT COUNT(UserId) FROM Users WHERE Login='{log}' AND Pswrd='{pass}'";
-            MySqlCommand command = new MySqlCommand(sql, connection);
-            int count = Convert.ToInt32(command.ExecuteScalar().ToString());
-
-            if (count > 0)
+            finally
             {
-                MessageBox.Show("Успешная авторизация!");
-                this.Close();
+                SQLConnect.connection.Close();
             }
-            else
-            {
-                MessageBox.Show("Ошибка подключения! Логин или пароль введены неверно");
-            }
-            connection.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
