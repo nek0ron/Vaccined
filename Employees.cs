@@ -34,17 +34,18 @@ namespace Vaccined
             reader.Close();
             SQLConnect.connection.Close();
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             SQLConnect.connection.Open();
 
+            int insertCount = 0;
             string log = textBox1.Text;
             string pass = textBox2.Text;
-            string sql = $"INSERT INTO Users (Login, Pswrd) VALUES('{log}', '{pass}')";
+            string sql = $"INSERT INTO Users(Login, Pswrd) VALUES('{log}', '{pass}')";
             try
             {
                 MySqlCommand command = new MySqlCommand(sql, SQLConnect.connection);
-                int insertCount = Convert.ToInt32(command.ExecuteNonQuery());
+                insertCount = Convert.ToInt32(command.ExecuteNonQuery());
             }
             catch (Exception ex)
             {
