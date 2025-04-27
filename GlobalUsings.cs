@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿global using MySql.Data.MySqlClient;
 
 public class SQLConnect
 {

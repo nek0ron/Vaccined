@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            buttonAdd = new Button();
+            buttonEdit = new Button();
+            buttonDel = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -45,38 +45,38 @@
             dataGridView1.Size = new Size(964, 377);
             dataGridView1.TabIndex = 0;
             // 
-            // button1
+            // buttonAdd
             // 
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button1.Location = new Point(12, 439);
-            button1.Name = "button1";
-            button1.Size = new Size(233, 46);
-            button1.TabIndex = 1;
-            button1.Text = "Добавить";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            buttonAdd.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonAdd.Location = new Point(12, 439);
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.Size = new Size(233, 46);
+            buttonAdd.TabIndex = 1;
+            buttonAdd.Text = "Добавить";
+            buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.Click += buttonAdd_Click;
             // 
-            // button2
+            // buttonEdit
             // 
-            button2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button2.Location = new Point(377, 439);
-            button2.Name = "button2";
-            button2.Size = new Size(233, 46);
-            button2.TabIndex = 2;
-            button2.Text = "Изменить";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            buttonEdit.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonEdit.Location = new Point(377, 439);
+            buttonEdit.Name = "buttonEdit";
+            buttonEdit.Size = new Size(233, 46);
+            buttonEdit.TabIndex = 2;
+            buttonEdit.Text = "Изменить";
+            buttonEdit.UseVisualStyleBackColor = true;
+            buttonEdit.Click += buttonEdit_Click;
             // 
-            // button3
+            // buttonDel
             // 
-            button3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            button3.Location = new Point(743, 439);
-            button3.Name = "button3";
-            button3.Size = new Size(233, 46);
-            button3.TabIndex = 3;
-            button3.Text = "Удалить";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            buttonDel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            buttonDel.Location = new Point(743, 439);
+            buttonDel.Name = "buttonDel";
+            buttonDel.Size = new Size(233, 46);
+            buttonDel.TabIndex = 3;
+            buttonDel.Text = "Удалить";
+            buttonDel.UseVisualStyleBackColor = true;
+            buttonDel.Click += buttonDel_Click;
             // 
             // Employees
             // 
@@ -84,9 +84,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(992, 552);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(buttonDel);
+            Controls.Add(buttonEdit);
+            Controls.Add(buttonAdd);
             Controls.Add(dataGridView1);
             Name = "Employees";
             Text = "Работа с БД";
@@ -98,8 +98,8 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button buttonAdd;
+        private Button buttonEdit;
+        private Button buttonDel;
     }
 }

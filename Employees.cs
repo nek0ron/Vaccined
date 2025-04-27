@@ -1,13 +1,13 @@
-﻿using MySql.Data.MySqlClient;
+﻿
 using System.Data;
 
 namespace Vaccined
 {
     public partial class Employees : Form
     {
-        MySqlDataAdapter MyDA = new();
-        BindingSource bSource = new();
-        DataTable table = new();
+        private static readonly MySqlDataAdapter MyDA = new();
+        private static readonly BindingSource bSource = new();
+        private static readonly DataTable table = new();
 
         public void GetListUsers()
         {
@@ -20,7 +20,7 @@ namespace Vaccined
                                 "IsUserActive  AS 'Состояние активности' " +
                                 "FROM Users";
 
-            MyDA.SelectCommand = new MySqlCommand(commandStr, SQLConnect.connection);
+            MyDA.SelectCommand = new(commandStr, SQLConnect.connection);
             MyDA.Fill(table);
             bSource.DataSource = table;
             dataGridView1.DataSource = bSource;
@@ -87,7 +87,7 @@ namespace Vaccined
             if (result == DialogResult.No) return;
 
             string commandStr = "DELETE FROM Users WHERE UserId = @UserId";
-            using (MySqlCommand cmd = new MySqlCommand(commandStr, SQLConnect.connection))
+            using (MySqlCommand cmd = new(commandStr, SQLConnect.connection))
             {
                 cmd.Parameters.AddWithValue("@UserId", UserId);
                 SQLConnect.connection.Open();
@@ -109,7 +109,7 @@ namespace Vaccined
             if (String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(Surname) || String.IsNullOrEmpty(Login) || String.IsNullOrEmpty(Pswrd) || String.IsNullOrEmpty(IsUserActive)) return;
 
             string commandStr = "INSERT INTO Users (Name, Surname, Login, Pswrd, IsUserActive) VALUES (@Name, @Surname, @Login, @Pswrd, @IsUserActive)";
-            using (MySqlCommand cmd = new MySqlCommand(commandStr, SQLConnect.connection))
+            using (MySqlCommand cmd = new(commandStr, SQLConnect.connection))
             {
                 cmd.Parameters.AddWithValue("@Name", Name);
                 cmd.Parameters.AddWithValue("@Surname", Surname);
@@ -143,21 +143,23 @@ namespace Vaccined
                 prompt.Controls.Add(confirmation);
                 prompt.AcceptButton = confirmation;
                 prompt.ShowDialog();
+#nullable disable
                 return inputBox.Text;
+#nullable restore
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
             AddUser();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonEdit_Click(object sender, EventArgs e)
         {
             EditUser();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonDel_Click(object sender, EventArgs e)
         {
             DeleteUser();
         }

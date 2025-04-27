@@ -31,7 +31,7 @@
             главнаяToolStripMenuItem = new ToolStripMenuItem();
             учётToolStripMenuItem = new ToolStripMenuItem();
             справочникToolStripMenuItem2 = new ToolStripMenuItem();
-            добавлениеНовыхПользователейToolStripMenuItem = new ToolStripMenuItem();
+            работаС_БДToolStripMenuItem = new ToolStripMenuItem();
             выходToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1 = new MenuStrip();
             menuStrip1.SuspendLayout();
@@ -47,22 +47,22 @@
             // учётToolStripMenuItem
             // 
             учётToolStripMenuItem.Name = "учётToolStripMenuItem";
-            учётToolStripMenuItem.Size = new Size(99, 22);
+            учётToolStripMenuItem.Size = new Size(180, 22);
             учётToolStripMenuItem.Text = "Учёт";
             // 
             // справочникToolStripMenuItem2
             // 
-            справочникToolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { добавлениеНовыхПользователейToolStripMenuItem });
+            справочникToolStripMenuItem2.DropDownItems.AddRange(new ToolStripItem[] { работаС_БДToolStripMenuItem });
             справочникToolStripMenuItem2.Name = "справочникToolStripMenuItem2";
             справочникToolStripMenuItem2.Size = new Size(87, 20);
             справочникToolStripMenuItem2.Text = "Справочник";
             // 
-            // добавлениеНовыхПользователейToolStripMenuItem
+            // работаС_БДToolStripMenuItem
             // 
-            добавлениеНовыхПользователейToolStripMenuItem.Name = "добавлениеНовыхПользователейToolStripMenuItem";
-            добавлениеНовыхПользователейToolStripMenuItem.Size = new Size(204, 22);
-            добавлениеНовыхПользователейToolStripMenuItem.Text = "Работа с БД (пациенты)";
-            добавлениеНовыхПользователейToolStripMenuItem.Click += добавлениеНовыхПользователейToolStripMenuItem_Click;
+            работаС_БДToolStripMenuItem.Name = "работаС_БДToolStripMenuItem";
+            работаС_БДToolStripMenuItem.Size = new Size(204, 22);
+            работаС_БДToolStripMenuItem.Text = "Работа с БД (пациенты)";
+            работаС_БДToolStripMenuItem.Click += работаС_БДToolStripMenuItem_Click;
             // 
             // выходToolStripMenuItem
             // 
@@ -101,7 +101,7 @@
         private ToolStripMenuItem главнаяToolStripMenuItem;
         private ToolStripMenuItem учётToolStripMenuItem;
         private ToolStripMenuItem справочникToolStripMenuItem2;
-        private ToolStripMenuItem добавлениеНовыхПользователейToolStripMenuItem;
+        private ToolStripMenuItem работаС_БДToolStripMenuItem;
         private ToolStripMenuItem выходToolStripMenuItem;
         private MenuStrip menuStrip1;
     }

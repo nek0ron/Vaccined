@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-
+﻿
 namespace Vaccined
 {
     public partial class Main : Form
@@ -8,7 +7,7 @@ namespace Vaccined
         public Main()
         {
             InitializeComponent();
-            this.Hide();
+            Hide();
             Auth auth = new();
             auth.ShowDialog();
         }
@@ -17,7 +16,7 @@ namespace Vaccined
         {
 
         }
-        private void добавлениеНовыхПользователейToolStripMenuItem_Click(object sender, EventArgs e)
+        private void работаС_БДToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Employees employees = new();
             employees.ShowDialog();

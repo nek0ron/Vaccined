@@ -1,11 +1,10 @@
-using MySql.Data.MySqlClient;
 
 namespace Vaccined
 {
 
     public partial class Auth : Form
     {
-            public static void CheckingExceptions(string log, string pass)
+            private static void CheckingExceptions(string log, string pass)
             {
                 if (String.IsNullOrEmpty(log) || String.IsNullOrEmpty(pass))
                 {
@@ -38,11 +37,11 @@ namespace Vaccined
             {
                 SQLConnect.connection.Open();
                 CheckingExceptions(Login, Pswrd);
-                string sql = "SELECT COUNT(UserId) FROM Users WHERE Login = @Login AND Pswrd = @Pswrd";
-                MySqlCommand command = new MySqlCommand(sql, SQLConnect.connection);
+                string commandStr = "SELECT COUNT(UserId) FROM Users WHERE Login = @Login AND Pswrd = @Pswrd";
+                MySqlCommand command = new(commandStr, SQLConnect.connection);
                 command.Parameters.AddWithValue("@Login", Login);
                 command.Parameters.AddWithValue("@Pswrd", Pswrd);
-                int count = Convert.ToInt32(command.ExecuteScalar().ToString());
+                int count = Convert.ToInt32(command.ExecuteScalar());
 
                 if (count > 0)
                 {
