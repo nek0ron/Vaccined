@@ -5,29 +5,6 @@ namespace Vaccined
 
     public partial class Auth : Form
     {
-        class NullLoginOrPass : Exception
-        {
-            public NullLoginOrPass(string mess) : base(mess)
-            {
-
-            }
-        }
-        class ShortLogin : Exception
-        {
-            public ShortLogin(string mess) : base(mess)
-            {
-
-            }
-        }
-        class ShortPass : Exception
-        {
-            public ShortPass(string mess) : base(mess)
-            {
-
-            }
-        }
-        class UsersAuth
-        {
             public static void CheckingExceptions(string log, string pass)
             {
                 if (String.IsNullOrEmpty(log) || String.IsNullOrEmpty(pass))
@@ -43,25 +20,24 @@ namespace Vaccined
                     throw new ShortPass("Длина пароля должна составлять более пяти символов.");
                 }
             }
-        }
         public Auth()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Auth_Load(object sender, EventArgs e)
         {
-           SQLConnect.connection = new MySqlConnection(SQLConnect.conn);
+            SQLConnect.connection = new(SQLConnect.conn);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonEnter_Click(object sender, EventArgs e)
         {
             string Login = textBox1.Text;
             string Pswrd = textBox2.Text;
             try
             {
                 SQLConnect.connection.Open();
-                UsersAuth.CheckingExceptions(Login, Pswrd);
+                CheckingExceptions(Login, Pswrd);
                 string sql = "SELECT COUNT(UserId) FROM Users WHERE Login = @Login AND Pswrd = @Pswrd";
                 MySqlCommand command = new MySqlCommand(sql, SQLConnect.connection);
                 command.Parameters.AddWithValue("@Login", Login);
@@ -71,7 +47,7 @@ namespace Vaccined
                 if (count > 0)
                 {
                     MessageBox.Show("Успешная авторизация!");
-                    this.Close();
+                    Close();
                 }
                 else
                 {
@@ -96,9 +72,14 @@ namespace Vaccined
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Auth_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

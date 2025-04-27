@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
+            buttonEnter = new Button();
+            buttonCancel = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             label1 = new Label();
             label2 = new Label();
             SuspendLayout();
             // 
-            // button1
+            // buttonEnter
             // 
-            button1.Location = new Point(12, 94);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Войти";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            buttonEnter.Location = new Point(12, 94);
+            buttonEnter.Name = "buttonEnter";
+            buttonEnter.Size = new Size(75, 23);
+            buttonEnter.TabIndex = 0;
+            buttonEnter.Text = "Войти";
+            buttonEnter.UseVisualStyleBackColor = true;
+            buttonEnter.Click += buttonEnter_Click;
             // 
-            // button2
+            // buttonCancel
             // 
-            button2.Location = new Point(204, 94);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "Отмена";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            buttonCancel.Location = new Point(204, 94);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(75, 23);
+            buttonCancel.TabIndex = 1;
+            buttonCancel.Text = "Отмена";
+            buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.Click += buttonCancel_Click;
             // 
             // textBox1
             // 
@@ -99,20 +99,21 @@
             Controls.Add(label1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(buttonCancel);
+            Controls.Add(buttonEnter);
             Name = "Auth";
             Text = "Авторизация для входа в систему для учёта вакцинированных пациентов";
             TopMost = true;
-            Load += Form1_Load;
+            FormClosing += Auth_FormClosing;
+            Load += Auth_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
-        private Button button2;
+        private Button buttonEnter;
+        private Button buttonCancel;
         private TextBox textBox1;
         private TextBox textBox2;
         private Label label1;

@@ -9,7 +9,7 @@ namespace Vaccined
         {
             InitializeComponent();
             this.Hide();
-            Auth auth = new Auth();
+            Auth auth = new();
             auth.ShowDialog();
         }
 
@@ -19,7 +19,7 @@ namespace Vaccined
         }
         private void добавлениеНовыхПользователейToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Employees employees = new Employees();
+            Employees employees = new();
             employees.ShowDialog();
         }
 

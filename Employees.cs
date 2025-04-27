@@ -12,7 +12,6 @@ namespace Vaccined
         public void GetListUsers()
         {
             SQLConnect.connection.Open();
-
             string commandStr = "SELECT UserId AS 'Код пользователя', " +
                                 "Name  AS 'Имя', " +
                                 "Surname AS 'Фамилия', " +
@@ -31,6 +30,7 @@ namespace Vaccined
         public Employees()
         {
             InitializeComponent();
+            SQLConnect.connection = new(SQLConnect.conn);
         }
 
         private void Employees_Load(object sender, EventArgs e)
