@@ -5,9 +5,9 @@ namespace Vaccined
 {
     public partial class Employees : Form
     {
-        private static readonly MySqlDataAdapter MyDA = new();
-        private static readonly BindingSource bSource = new();
-        private static readonly DataTable table = new();
+        private MySqlDataAdapter MyDA = new();
+        private BindingSource bSource = new();
+        private DataTable table = new();
 
         public void GetListUsers()
         {
@@ -51,16 +51,21 @@ namespace Vaccined
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
         }
-        public void EditUser()
+        private void EditUser()
         {
             if (dataGridView1.CurrentRow == null) return;
 
             string? UserId = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            string Name = DialogMode.ShowDialog("Изменить имя:", "Редактирование пользователя", dataGridView1.CurrentRow.Cells[1].Value.ToString());
-            string Surname = DialogMode.ShowDialog("Изменить фамилию:", "Редактирование пользователя", dataGridView1.CurrentRow.Cells[2].Value.ToString());
-            string Login = DialogMode.ShowDialog("Изменить логин:", "Редактирование пользователя", dataGridView1.CurrentRow.Cells[3].Value.ToString());
-            string Pswrd = DialogMode.ShowDialog("Изменить пароль:", "Редактирование пользователя", dataGridView1.CurrentRow.Cells[4].Value.ToString());
-            string IsUserActive = DialogMode.ShowDialog("Изменить активность (1/0):", "Редактирование пользователя", dataGridView1.CurrentRow.Cells[5].Value.ToString());
+            string Name = DialogMode.ShowDialog("Изменить имя:", "Редактирование пользователя", 
+                dataGridView1.CurrentRow.Cells[1].Value.ToString());
+            string Surname = DialogMode.ShowDialog("Изменить фамилию:", "Редактирование пользователя", 
+                dataGridView1.CurrentRow.Cells[2].Value.ToString());
+            string Login = DialogMode.ShowDialog("Изменить логин:", "Редактирование пользователя", 
+                dataGridView1.CurrentRow.Cells[3].Value.ToString());
+            string Pswrd = DialogMode.ShowDialog("Изменить пароль:", "Редактирование пользователя", 
+                dataGridView1.CurrentRow.Cells[4].Value.ToString());
+            string IsUserActive = DialogMode.ShowDialog("Изменить активность (1/0):", "Редактирование пользователя", 
+                dataGridView1.CurrentRow.Cells[5].Value.ToString());
 
             string commandStr = "UPDATE Users SET Name = @Name, Login = @Login, Pswrd = @Pswrd, IsUserActive = @IsUserActive WHERE UserId = @UserId";
             using (MySqlCommand cmd = new(commandStr, SQLConnect.connection))
@@ -78,7 +83,7 @@ namespace Vaccined
             table.Clear();
             GetListUsers();
         }
-        public void DeleteUser()
+        private void DeleteUser()
         {
             if (dataGridView1.CurrentRow == null) return;
 
@@ -97,16 +102,17 @@ namespace Vaccined
             table.Clear();
             GetListUsers();
         }
-        public void AddUser()
+        private void AddUser()
         {
-            string? UserId = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            string? _ = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             string Name = DialogMode.ShowDialog("Введите имя:", "Добавление пользователя");
             string Surname = DialogMode.ShowDialog("Введите фамилию:", "Добавление пользователя");
             string Login = DialogMode.ShowDialog("Введите логин:", "Добавление пользователя");
             string Pswrd = DialogMode.ShowDialog("Введите пароль", "Добавление пользователя");
             string IsUserActive = DialogMode.ShowDialog("Введите активность (1/0):", "Добавление пользователя");
 
-            if (String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(Surname) || String.IsNullOrEmpty(Login) || String.IsNullOrEmpty(Pswrd) || String.IsNullOrEmpty(IsUserActive)) return;
+            if (String.IsNullOrEmpty(Name) || String.IsNullOrEmpty(Surname) || 
+                String.IsNullOrEmpty(Login) || String.IsNullOrEmpty(Pswrd) || String.IsNullOrEmpty(IsUserActive)) return;
 
             string commandStr = "INSERT INTO Users (Name, Surname, Login, Pswrd, IsUserActive) VALUES (@Name, @Surname, @Login, @Pswrd, @IsUserActive)";
             using (MySqlCommand cmd = new(commandStr, SQLConnect.connection))
